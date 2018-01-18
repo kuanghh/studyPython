@@ -86,12 +86,12 @@ def yang(num):
             elif i == size:
                 nl.append(l[size - 1])
             else:
-                nl.append(l[i] + l[i + 1])
+                nl.append(l[i - 1] + l[i])
             i = i + 1
-            l = nl
+        l = nl
         j = j + 1
 
 
-yang_genertor = yang(4)
+yang_genertor = yang(10)
 for x in yang_genertor:
     print(x)
