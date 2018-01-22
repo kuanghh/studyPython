@@ -54,3 +54,43 @@ now3()
 # 输出
 # execute now3():
 # 2018-01-23
+
+# 经过 decorator洗礼过的函数，他们的__name__，会发生改变
+print(now3.__name__)  # 输出 wrapper
+
+# 因为返回的那个wrapper()函数名字就是'wrapper'，所以，需要把原始函数的__name__等属性复制到wrapper()函数中，否则，有些依赖函数签名的代码执行就会出错。
+# 不需要编写wrapper.__name__ = func.__name__这样的代码，Python内置的functools.wraps就是干这个事的，所以，一个完整的decorator的写法如下：
+
+import  functools
+def newlog2(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+
+@newlog2('hhhh')
+def now4():
+    print("2018-01-31")
+
+now4()
+print(now4.__name__)  # 输出 now4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
