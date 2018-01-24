@@ -18,12 +18,15 @@ s2 = Student("Tom")
 print(s1.score)  # 输出10
 print(s2.score)  # 输出10
 
-s1.score = 20
+s1.score = 20    # 重新给s1赋值了一个实例属性score把类属性的score屏蔽掉了
 print(s1.score)  # 输出20
 print(s2.score)  # 输出10
-
-
 # 千万不要对实例属性和类属性使用相同的名字，因为相同名称的实例属性将屏蔽掉类属性，但是当你删除实例属性后，再使用相同的名称，访问到的将是类属性。
 
+print(Student.score)  # 输出10
+Student.score = 20
+print(s2.score)  # 输出20
+
+# 类属性属于类所有，所有实例共享一个属性;
 
 
